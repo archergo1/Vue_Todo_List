@@ -13,6 +13,10 @@ const todos = ref([
 
 const handleAddTodo = (todo) => {
   console.log('handleAddTodo', todo)
+  if (todo.text === '') {
+    alert('Please enter a todo')
+    return
+  }
   todos.value.push(todo)
 }
 
