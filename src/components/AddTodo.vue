@@ -29,6 +29,7 @@ const onSubmit = () => {
     text: text.value,
     completed: false,
   }
-  emit('addTodo', todo)
+  emit('add-todo', todo)
+  text.value = ''
 }
 </script>

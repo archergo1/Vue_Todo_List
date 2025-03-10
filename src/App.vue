@@ -7,6 +7,7 @@ const todos = ref([
   {
     id: 1,
     text: 'COOK',
+    completed: false,
   },
 ])
 
@@ -14,11 +15,21 @@ const handleAddTodo = (todo) => {
   console.log('handleAddTodo', todo)
   todos.value.push(todo)
 }
+
+const handleDeleteTodo = (todoId) => {
+  todos.value = todos.value.filter((todo) => todo.id !== todoId)
+}
+
+const handleCompleteTodo = (todoId) => {
+  todos.value = todos.value.map((todo) =>
+    todo.id === todoId ? { ...todo, completed: !todo.completed } : todo,
+  )
+}
 </script>
 
 <template>
   <div>
     <AddTodo @add-todo="handleAddTodo" />
-    <TodoList :todos="todos" />
+    <TodoList :todos="todos" @delete-todo="handleDeleteTodo" @complete-todo="handleCompleteTodo" />
   </div>
 </template>
